@@ -1,0 +1,39 @@
+modLoader = "javafml"
+loaderVersion = "${loader_version_range}"
+license = "${mod_license}"
+
+[[mods]]
+    modId = "${mod_id}"
+    version = "${mod_version}"
+    displayName = "${mod_name}"
+    description = """${mod_description}"""
+
+# Register the Mixin config
+[[mixins]]
+    config = "${mod_id}.mixins.json"
+
+# ── Dependencies ──────────────────────────────────────────────────────────────
+
+[[dependencies.${mod_id}]]
+    modId = "neoforge"
+    type = "required"
+    versionRange = "${neo_version_range}"
+    ordering = "NONE"
+    side = "CLIENT"
+
+[[dependencies.${mod_id}]]
+    modId = "minecraft"
+    type = "required"
+    versionRange = "${minecraft_version_range}"
+    ordering = "NONE"
+    side = "CLIENT"
+
+# FancyMenu must be present; load order doesn't matter for Mixins (applied at
+# class-load time by the Mixin framework), but marking it required ensures a
+# clear error when FancyMenu is missing.
+[[dependencies.${mod_id}]]
+    modId = "fancymenu"
+    type = "required"
+    versionRange = "[3.8.1,)"
+    ordering = "NONE"
+    side = "CLIENT"
